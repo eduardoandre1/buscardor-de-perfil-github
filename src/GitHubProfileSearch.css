@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap');
+/* Fundo escuro com efeito de luz azul */
+.background {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100dvh;
+    background:#1F1F1F;
+    overflow-y: hidden;
+  }
+  .circle {
+    border-radius: 50%;  /* Faz um círculo */
+    background: radial-gradient(50% 50% at 50% 50%, #005CFF 0%, rgba(0, 0, 0, 0) 100%)
+}
+.top{
+    position: fixed;
+    top: -396px;
+    left: 954px;
+    width: 61vw;  /* Tamanho do círculo */
+    height: 61vw;
+}
+.bottom{
+    position: fixed;
+    width: 46.8vw;
+    height: 46.8vw;
+    left: -415px;
+    top: 198px;
+}
+.polka-dots {
+    position: fixed;
+    width: 18.5%;  /* Largura da div */
+    height: 29.7%; /* Altura da div */
+    background-image: radial-gradient(circle, #272727 42%, transparent 10%);
+    background-size: 9px 9px; /* Define o tamanho do padrão */
+    top: 5.4%;
+    left: 3.4%;
+
+}
+  
+  /* Caixa central preta */
+  .card {
+    background: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    text-align: center;
+    z-index: 1;
+    height: 66%;
+    width: 80%;
+    margin: auto 0;
+
+  }
+  
+  /* Título */
+  .title {
+    color: white;
+    font-family: Nunito Sans;
+    font-weight: 600;
+    font-size: 60px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width:384px;
+    height: 82px;
+  }
+  
+  /* Logo do GitHub */
+  .logo {
+    width: 82px;
+    height: 82px;
+    filter: invert(100%);
+  }
+  /* Texto do GitHub */
+  .github {
+    filter: invert(100%);
+    height: 45px;
+    width: 160px;
+  }
+  
+  /* Input e botão dentro do mesmo container */
+  .input-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border-radius: 0.2em;
+    overflow: hidden;
+    margin-top: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 1px;
+    width: 503px;
+  }
+  
+  /* Input */
+  .input-group input {
+    padding: 12px;
+    width: 350px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+  }
+  
+  /* Botão */
+  .input-group button {
+    background: #005CFF;
+    border: none;
+    padding: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+  }
