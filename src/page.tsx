@@ -12,7 +12,7 @@ const GitHubProfileSearch: React.FC = () => {
   const [profile, SetProfile] = useState<Profile>({
     name: "",
     image:"",
-    bio: "Desenvolvedor front-end apaixonado por criar interfaces intuitivas e acessíveis. Especialista em UX/UI e e-commerces, transformando design em código eficiente. Sempre explorando novas tecnologias para melhorar a experiência do usuário. 🚀",
+    bio: "",
     status: 'pending'
 })
 const [username, setUsername] = useState("");
@@ -23,8 +23,8 @@ const [show,setShow] = useState(false);
     try {
       const response = await fetch(`https://api.github.com/users/${name}`);
       if (!response.ok) {
-        SetProfile({status:"notFound"})
-        console.log(profile)
+        setShow(true);
+        SetProfile((prevState) => ({ ...prevState, status: "notFound" }))
         return
       }
       const data = await response.json();
@@ -34,10 +34,8 @@ const [show,setShow] = useState(false);
         image: data.avatar_url,
         status: "found"
       });
-      console.log(data);
       setShow(true)
     } catch (error: any) {
-      console.log(error.message);
       SetProfile({status:"notFound"})
     }
     
@@ -82,6 +80,10 @@ const [show,setShow] = useState(false);
             </svg>
           </button>
         </div>
+        <div className={`errorBox ${profile.status==="notFound"&&show?"":"hidden"  }`}>
+          <h3>Nenhum perfil foi encontrado com este nome de usuário.<br />
+          Tente novamente</h3>
+        </div>
         <div className={`profileBox ${profile.status==="found"&&show?"show":""}`}>
           <div className="profile">
             <img className="avatar" src={profile.image} alt="Profile Image" />
@@ -89,12 +91,11 @@ const [show,setShow] = useState(false);
               <h1 className="name">{profile.name}</h1>
               <p  className="Biography">{profile.bio}</p>
             </div>
+          </div>
         </div>
-        <div className="errorBox">
-          <h3> </h3>
-        </div>
-        </div>
+        
       </div>
+      
     </div>
     </>
   );
