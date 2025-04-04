@@ -5,6 +5,7 @@
     align-items: center;
     justify-content: center;
     height: 100dvh;
+    width: 100dvw;
     background:#1F1F1F;
     overflow-y: hidden;
   }
