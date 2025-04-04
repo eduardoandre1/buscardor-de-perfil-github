@@ -117,7 +117,7 @@
   }
   /*profile Space */
   .profileBox{
-    display: flex;
+    display: none;
      /* Coluna para a imagem e outra para o conteúdo */
     align-items: center;
     gap: 16px;
@@ -159,4 +159,7 @@
 .biography {
     overflow: hidden;
     
+}
+.show {
+  display: flex;
 }

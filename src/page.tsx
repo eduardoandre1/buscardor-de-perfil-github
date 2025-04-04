@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./GitHubProfileSearch.css";
 
 const GitHubProfileSearch: React.FC = () => {
-  const [username, setUsername] = useState("");
+  
   type Profile = {
     name: string;
     image: string;
@@ -15,12 +15,17 @@ const GitHubProfileSearch: React.FC = () => {
     bio: "Desenvolvedor front-end apaixonado por criar interfaces intuitivas e acessíveis. Especialista em UX/UI e e-commerces, transformando design em código eficiente. Sempre explorando novas tecnologias para melhorar a experiência do usuário. 🚀",
     status: 'pending'
 })
+const [username, setUsername] = useState("");
+const [show,setShow] = useState(false);
   async function GetProfile(name: string){
     if (!name) return;
+    setShow(false);
     try {
       const response = await fetch(`https://api.github.com/users/${name}`);
       if (!response.ok) {
-        throw new Error("Usuário não encontrado!");
+        SetProfile({status:"notFound"})
+        console.log(profile)
+        return
       }
       const data = await response.json();
       SetProfile({
@@ -30,11 +35,13 @@ const GitHubProfileSearch: React.FC = () => {
         status: "found"
       });
       console.log(data);
+      setShow(true)
     } catch (error: any) {
       console.log(error.message);
+      SetProfile({status:"notFound"})
     }
+    
   }
-
   return (
     <>
     <div className="circle top"></div>
@@ -75,7 +82,7 @@ const GitHubProfileSearch: React.FC = () => {
             </svg>
           </button>
         </div>
-        <div className="profileBox">
+        <div className={`profileBox ${profile.status==="found"&&show?"show":""}`}>
           <div className="profile">
             <img className="avatar" src={profile.image} alt="Profile Image" />
             <div className="textSpace">
@@ -83,7 +90,9 @@ const GitHubProfileSearch: React.FC = () => {
               <p  className="Biography">{profile.bio}</p>
             </div>
         </div>
-
+        <div className="errorBox">
+          <h3> </h3>
+        </div>
         </div>
       </div>
     </div>
