@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useState } from "react";
 import "./GitHubProfileSearch.css";
 
 const GitHubProfileSearch: React.FC = () => {
@@ -24,7 +24,12 @@ const [show,setShow] = useState(false);
       const response = await fetch(`https://api.github.com/users/${name}`);
       if (!response.ok) {
         setShow(true);
-        SetProfile((prevState) => ({ ...prevState, status: "notFound" }))
+        SetProfile( {
+          bio:"",
+          image:"",
+          name:"",
+          status: "notFound"
+        })
         return
       }
       const data = await response.json();
@@ -32,11 +37,16 @@ const [show,setShow] = useState(false);
         name: data.name, 
         bio: data.bio?data.bio:"este usuário não possui uma biografia em seu perfil do github", 
         image: data.avatar_url,
-        status: "found"
+        status: "found",
       });
       setShow(true)
     } catch (error: any) {
-      SetProfile({status:"notFound"})
+      SetProfile( {
+        bio:"",
+        image:"",
+        name:"",
+        status: "notFound"
+      })
     }
     
   }
